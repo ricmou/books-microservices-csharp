@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option csharp_namespace = "APIExemplar";
+
+import "google/protobuf/empty.proto";
+
+package APIExemplarRPC;
+
+// The Exemplar service definition.
+service APIExemplarExemplarGRPC {
+
+  // Retrieves a exemplar information by it's ID
+  rpc GetExemplarByID (RequestWithExemplarId) returns (ExemplarGrpcDto);
+
+  // Retrieves all exemplar
+  rpc GetAllExemplars (google.protobuf.Empty) returns (stream ExemplarGrpcDto);
+  
+  // Retrieves all exemplars of book id
+  rpc GetAllExemplarsFromBook (RequestWithISBN) returns (stream ExemplarGrpcDto);
+
+  // Retrieves all exemplars of book id
+  rpc GetAllExemplarsFromClient (RequestWithClientId) returns (stream ExemplarGrpcDto);
+
+  // Add a new exemplar
+  rpc AddNewExemplar (CreatingExemplarGrpcDto) returns (ExemplarGrpcDto);
+  
+  // Modify a exemplar
+  rpc ModifyExemplar (ExemplarGrpcDto) returns (ExemplarGrpcDto);
+
+  // Delete a exemplar
+  rpc DeleteExemplar (RequestWithExemplarId) returns (ExemplarGrpcDto);
+}
+
+///////////////////
+//Business Bodies//
+///////////////////
+
+// ExemplarDto
+message ExemplarGrpcDto {
+  string ExemplarId = 1;
+  string BookId = 2;
+  int32 BookState = 3;
+  string SellerId = 4;
+  string DateOfAcquisition = 5;
+}
+
+// CreateExemplarDto
+message CreatingExemplarGrpcDto {
+  string BookId = 1;
+  int32 BookState = 2;
+  string SellerId = 3;
+  string DateOfAcquisition = 4;
+}
+
+//////////////////
+//Request Bodies//
+//////////////////
+
+// Request With ID
+message RequestWithExemplarId {
+  string Id = 1;
+}
+
+// Request With Client ID
+message RequestWithClientId {
+  string Id = 1;
+}
+
+//Request With ISBN
+message RequestWithISBN{
+  string Id = 1;
+}

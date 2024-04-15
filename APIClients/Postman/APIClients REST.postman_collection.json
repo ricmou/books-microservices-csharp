@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "3a0b588e-8823-4ef3-b187-81f58c4c65b6",
+		"name": "APIClients REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26274688"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Register Clients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"client_id\", pm.response.json().clientId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Guy\",\r\n    \"street\": \"Street 1\",\r\n    \"local\": \"Localized\",\r\n    \"postalCode\": \"4444-444\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Clients/",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Client Information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": \"{{client_id}}\",\r\n    \"name\": \"Guy Fiery\",\r\n    \"street\": \"Street 1\",\r\n    \"local\": \"Localized\",\r\n    \"postalCode\": \"4444-444\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Guy Fiery\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Street",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": \"{{client_id}}\",\r\n    \"name\": \"Guy Fiery\",\r\n    \"street\": \"Street 2\",\r\n    \"local\": \"Localized\",\r\n    \"postalCode\": \"4444-444\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Street\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.street).to.eql(\"Street 2\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Local",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": \"{{client_id}}\",\r\n    \"name\": \"Guy Fiery\",\r\n    \"street\": \"Street 2\",\r\n    \"local\": \"Unlocalized\",\r\n    \"postalCode\": \"4444-444\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Local\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.local).to.eql(\"Unlocalized\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change PostalCode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": \"{{client_id}}\",\r\n    \"name\": \"Guy Fiery\",\r\n    \"street\": \"Street 2\",\r\n    \"local\": \"Localized\",\r\n    \"postalCode\": \"4444-666\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed postalCode\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.postalCode).to.eql(\"4444-666\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": \"{{client_id}}\",\r\n    \"name\": \"Guy Fiery\",\r\n    \"street\": \"Street 2\",\r\n    \"local\": \"Localized\",\r\n    \"postalCode\": \"4444-444\",\r\n    \"country\": \"ZA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Country\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.country).to.eql(\"ZA\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Information of a deleted client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Clients/{{client_id}}",
+							"host": [
+								"{{base_url}}Clients"
+							],
+							"path": [
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://localhost:6001/api/"
+		},
+		{
+			"key": "client_id",
+			"value": "null",
+			"type": "string"
+		}
+	]
+}

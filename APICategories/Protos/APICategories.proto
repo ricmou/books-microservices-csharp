@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+option csharp_namespace = "APICategories";
+
+import "google/protobuf/empty.proto";
+
+package APICategoriesRPC;
+
+// The Books service definition.
+service APICategoriesBooksGRPC {
+  // Retrieves categories from a specific book
+  rpc GetBookByISBN (RequestWithISBN) returns (BookGrpcDto);
+
+  // Retrieves all books with categories specified
+  rpc GetAllBooks (google.protobuf.Empty) returns (stream BookGrpcDto);
+
+  // Add a new book and associate to categories
+  rpc AddNewBook (CreatingBooksGrpcDto) returns (BookGrpcDto);
+  
+  // Modify a book
+  rpc ModifyBook (CreatingBooksGrpcDto) returns (BookGrpcDto);
+
+  // Delete a book
+  rpc DeleteBook (RequestWithISBN) returns (BookGrpcDto);
+}
+
+// The Categories Service definition
+service APICategoriesCategoryGRPC {
+
+  // Retrieves a categories information by it's ID
+  rpc GetCategoryByID (RequestWithCategoryId) returns (CategoryGrpcDto);
+
+  // Retrieves all categories
+  rpc GetAllCategories (google.protobuf.Empty) returns (stream CategoryGrpcDto);
+
+  // Add a new Category
+  rpc AddNewCategory (CreatingCategoryGrpcDto) returns (CategoryGrpcDto);
+  
+  // Modify a category
+  rpc ModifyCategory (CategoryGrpcDto) returns (CategoryGrpcDto);
+
+  // Delete a Category
+  rpc DeleteCategory (RequestWithCategoryId) returns (CategoryGrpcDto);
+}
+
+///////////////////
+//Business Bodies//
+///////////////////
+
+// CategoryDto
+message CategoryGrpcDto {
+  string CategoryId = 1;
+  string Name = 2;
+}
+
+// CreateCategoryDto
+message CreatingCategoryGrpcDto {
+  string CategoryId = 1;
+  string Name = 2;
+}
+
+// BookDto
+message BookGrpcDto {
+  string Id = 1;
+  repeated CategoryGrpcDto Categories = 2;
+}
+
+// CreateBookDto
+message CreatingBooksGrpcDto {
+  string Id = 1;
+  repeated string Categories = 2;
+}
+
+//////////////////
+//Request Bodies//
+//////////////////
+
+// Request With ISBN
+message RequestWithISBN {
+  string Id = 1;
+}
+
+// Request With Category ID
+message RequestWithCategoryId {
+  string Id = 1;
+}

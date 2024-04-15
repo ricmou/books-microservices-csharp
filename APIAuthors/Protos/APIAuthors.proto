@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+option csharp_namespace = "APIAuthors";
+
+import "google/protobuf/empty.proto";
+
+package APIAuthorsRPC;
+
+// The Books service definition.
+service APIAuthorsBooksGRPC {
+  // Retrieves authors from a specific book
+  rpc GetBookByISBN (RequestWithISBN) returns (BookGrpcDto);
+
+  // Retrieves all books from a specific author
+  rpc GetAllBooksFromAuthor (RequestWithAuthorId) returns (stream BookGrpcDto);
+  
+  // Retrieves all books with authors specified
+  rpc GetAllBooks (google.protobuf.Empty) returns (stream BookGrpcDto);
+  
+  // Add a new book and associate to authors
+  rpc AddNewBook (CreatingBooksGrpcDto) returns (BookGrpcDto);
+  
+  // Modify a book
+  rpc ModifyBook (CreatingBooksGrpcDto) returns (BookGrpcDto);
+
+  // Delete a book
+  rpc DeleteBook (RequestWithISBN) returns (BookGrpcDto);
+}
+
+// The Authors Service definition
+service APIAuthorsAuthorGRPC {
+  
+  // Retrieves a authors information by it's ID
+  rpc GetAuthorByID (RequestWithAuthorId) returns (AuthorGrpcDto);
+  
+  // Retrieves all authors
+  rpc GetAllAuthors (google.protobuf.Empty) returns (stream AuthorGrpcDto);
+  
+  // Add a new Author
+  rpc AddNewAuthor (CreatingAuthorGrpcDto) returns (AuthorGrpcDto);
+  
+  // Modify a author
+  rpc ModifyAuthor (AuthorGrpcDto) returns (AuthorGrpcDto);
+  
+  // Delete a Author
+  rpc DeleteAuthor (RequestWithAuthorId) returns (AuthorGrpcDto);
+}
+
+///////////////////
+//Business Bodies//
+///////////////////
+
+// AuthorDto
+message AuthorGrpcDto {
+  string AuthorId = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  string BirthDate = 4;
+  string Country = 5;
+}
+
+// CreateAuthorDto
+message CreatingAuthorGrpcDto {
+  string AuthorId = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  string BirthDate = 4;
+  string Country = 5;
+}
+
+// BookDto
+message BookGrpcDto {
+  string Id = 1;
+  repeated AuthorGrpcDto Authors = 2;
+}
+
+// CreateBookDto
+message CreatingBooksGrpcDto {
+  string Id = 1;
+  repeated string Authors = 2;
+}
+
+//////////////////
+//Request Bodies//
+//////////////////
+
+// Request With ISBN
+message RequestWithISBN {
+  string Id = 1;
+}
+
+// Request with Author ID
+message RequestWithAuthorId {
+  string Id = 1;
+}

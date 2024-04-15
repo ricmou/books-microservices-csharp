@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+option csharp_namespace = "APIPublisher";
+
+import "google/protobuf/empty.proto";
+
+package APIPublisherRPC;
+
+// The Books service definition.
+service APIPublisherBooksGRPC {
+  // Retrieves publishers from a specific book
+  rpc GetBookByISBN (RequestWithISBN) returns (BookGrpcDto);
+
+  // Retrieves all books from a publisher
+  rpc GetAllBooksFromPublisher (RequestWithPublisherId) returns (stream BookGrpcDto);
+
+  // Retrieves all books with publishers specified
+  rpc GetAllBooks (google.protobuf.Empty) returns (stream BookGrpcDto);
+
+  // Add a new book and associate to publishers
+  rpc AddNewBook (CreatingBooksGrpcDto) returns (BookGrpcDto);
+  
+  // Modify a book
+  rpc ModifyBook (CreatingBooksGrpcDto) returns (BookGrpcDto);
+
+  // Delete a book
+  rpc DeleteBook (RequestWithISBN) returns (BookGrpcDto);
+}
+
+// The Publisher Service definition
+service APIPublisherPublisherGRPC {
+
+  // Retrieves a publishers information by it's ID
+  rpc GetPublisherByID (RequestWithPublisherId) returns (PublisherGrpcDto);
+
+  // Retrieves all publishers
+  rpc GetAllPublishers (google.protobuf.Empty) returns (stream PublisherGrpcDto);
+
+  // Add a new Publisher
+  rpc AddNewPublisher (CreatingPublisherGrpcDto) returns (PublisherGrpcDto);
+  
+  // Modify a Publisher
+  rpc ModifyPublisher (PublisherGrpcDto) returns (PublisherGrpcDto);
+
+  // Delete a Publisher
+  rpc DeletePublisher (RequestWithPublisherId) returns (PublisherGrpcDto);
+}
+
+///////////////////
+//Business Bodies//
+///////////////////
+
+// PublisherDto
+message PublisherGrpcDto {
+  string PublisherId = 1;
+  string Name = 2;
+  string Country = 3;
+}
+
+// CreatePublisherDto
+message CreatingPublisherGrpcDto {
+  string PublisherId = 1;
+  string Name = 2;
+  string Country = 3;
+}
+
+// BookDto
+message BookGrpcDto {
+  string Id = 1;
+  PublisherGrpcDto Publisher = 2;
+}
+
+// CreateBookDto
+message CreatingBooksGrpcDto {
+  string Id = 1;
+  string PublisherId = 2;
+}
+
+//////////////////
+//Request Bodies//
+//////////////////
+
+// Request With ISBN
+message RequestWithISBN {
+  string Id = 1;
+}
+
+// Request With Publisher ID
+message RequestWithPublisherId {
+  string Id = 1;
+}

@@ -1,0 +1,871 @@
+{
+	"info": {
+		"_postman_id": "d5aca16d-f5d8-47cb-8444-1cad1022d315",
+		"name": "APIAuthors REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Request Information of a author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE1\",\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"One\",\r\n    \"birthDate\": \"01/05/1990\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Author Information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change FirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE1\",\r\n    \"firstName\": \"Test1\",\r\n    \"lastName\": \"One\",\r\n    \"birthDate\": \"01/05/1990\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed FirstName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.firstName).to.eql(\"Test1\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change LastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE1\",\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"One1\",\r\n    \"birthDate\": \"01/05/1990\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed LastName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.lastName).to.eql(\"One1\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change BirthDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE1\",\r\n    \"firstName\": \"Test1\",\r\n    \"lastName\": \"One1\",\r\n    \"birthDate\": \"11/05/1990\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed BirthDaate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.birthDate).to.eql(\"11/05/1990\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE1\",\r\n    \"firstName\": \"Test1\",\r\n    \"lastName\": \"One1\",\r\n    \"birthDate\": \"11/05/1990\",\r\n    \"country\": \"ZA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Country\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.country).to.eql(\"ZA\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Information of a deleted author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Register Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE1\",\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"One\",\r\n    \"birthDate\": \"01/05/1990\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Author 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"TE2\",\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"One\",\r\n    \"birthDate\": \"01/05/1990\",\r\n    \"country\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Authors/",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Information of a Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Book/978-0000000000",
+							"host": [
+								"{{base_url}}Book"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"978-0000000000\",\r\n    \"authors\": [\"TE1\"]    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Books/",
+							"host": [
+								"{{base_url}}Books"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Book Information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Books/978-0000000000",
+							"host": [
+								"{{base_url}}Books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Authors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"978-0000000000\",\r\n    \"authors\": [\"TE2\"]    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}Books/978-0000000000",
+							"host": [
+								"{{base_url}}Books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed author\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.authors[0].authorId).to.eql(\"TE2\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Books/978-0000000000",
+							"host": [
+								"{{base_url}}Books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Books/978-0000000000",
+							"host": [
+								"{{base_url}}Books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Information of a deleted book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Books/978-0000000000",
+							"host": [
+								"{{base_url}}Books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE1",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}Authors/TE2",
+							"host": [
+								"{{base_url}}Authors"
+							],
+							"path": [
+								"TE2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://localhost:5001/api/"
+		}
+	]
+}

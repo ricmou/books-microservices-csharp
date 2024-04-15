@@ -1,0 +1,22 @@
+#  Template .NET Core build
+
+#  This template allows you to validate your .NET Core package.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: mcr.microsoft.com/dotnet/sdk:6.0
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - dotnetcore
+            script:
+              - REPORTS_PATH=./test-reports/build_${BITBUCKET_BUILD_NUMBER}
+              - dotnet restore
+              - dotnet build --no-restore --configuration Release
+              - dotnet test --no-build --configuration Release --test-adapter-path:. --logger:"xunit;LogFilePath=$REPORTS_PATH/xunit.xml"
+              - dotnet publish --configuration Release --no-build -o ./publish
+            artifacts: 
+              - publish/**

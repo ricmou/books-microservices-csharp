@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option csharp_namespace = "APIClients";
+
+import "google/protobuf/empty.proto";
+
+package APIClientsRPC;
+
+// The Client service definition.
+service APIClientsClientGRPC {
+
+  // Retrieves a clients information by it's ID
+  rpc GetClientByID (RequestWithClientId) returns (ClientGrpcDto);
+
+  // Retrieves all clients
+  rpc GetAllClients (google.protobuf.Empty) returns (stream ClientGrpcDto);
+
+  // Add a new Client
+  rpc AddNewClient (CreatingClientGrpcDto) returns (ClientGrpcDto);
+  
+  // Modify a client
+  rpc ModifyClient (ClientGrpcDto) returns (ClientGrpcDto);
+
+  // Delete a Client
+  rpc DeleteClient (RequestWithClientId) returns (ClientGrpcDto);
+}
+
+///////////////////
+//Business Bodies//
+///////////////////
+
+// ClientDto
+message ClientGrpcDto {
+  string ClientId = 1;
+  string Name = 2;
+  string Street = 3;
+  string Local = 4;
+  string PostalCode = 5;
+  string Country = 6;
+}
+
+// CreateClientDto
+message CreatingClientGrpcDto {
+  string Name = 1;
+  string Street = 2;
+  string Local = 3;
+  string PostalCode = 4;
+  string Country = 5;
+}
+
+//////////////////
+//Request Bodies//
+//////////////////
+
+// Request With ID
+message RequestWithClientId {
+  string Id = 1;
+}
+
